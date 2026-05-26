@@ -298,10 +298,10 @@ class _PhotosSectionState extends State<PhotosSection> {
           height: 8.h,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: widget.photoUrls.length + 1, // +1 for "See All" button
+            itemCount: widget.photoUrls.length,
             itemBuilder: (context, index) {
-              if (index == widget.photoUrls.length) {
-                // "See All" button
+              final bool isLast = index == widget.photoUrls.length - 1;
+              if (isLast) {
                 return GestureDetector(
                   onTap: widget.onSeeAll,
                   child: Container(
@@ -309,18 +309,41 @@ class _PhotosSectionState extends State<PhotosSection> {
                     height: 8.h,
                     margin: EdgeInsets.only(right: 2.w),
                     decoration: BoxDecoration(
-                      color: AppColors.grey400,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Center(
-                      child: Text(
-                        'See All',
-                        style: TextStyle(
-                          color: AppColors.textWhite,
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w600,
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Image.asset(
+                            widget.photoUrls[index],
+                            width: 8.h,
+                            height: 8.h,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, error, stackTrace) {
+                              return Container(
+                                color: AppColors.grey300,
+                              );
+                            },
+                          ),
                         ),
-                      ),
+                        Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black.withOpacity(0.5),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        ),
+                        Center(
+                          child: Text(
+                            'See All',
+                            style: TextStyle(
+                              color: AppColors.textWhite,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 );

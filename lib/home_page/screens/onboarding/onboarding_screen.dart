@@ -31,7 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       buttonText: 'Next',
     ),
     OnboardingPage(
-      imagePath: 'assets/images/spalsh_3.png',
+      imagePath: 'assets/images/splash_3.png',
       title: '💰 Pay Bills, Redeem Rewards',
       description:
           'Earn PawCoins and get exclusive discounts when you pay through PawTales.',
@@ -121,6 +121,22 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   },
                 ),
               ),
+            // Bottom decorative bar
+            Positioned(
+              bottom: 1.h,
+              left: 0,
+              right: 0,
+              child: Center(
+                child: Container(
+                  width: 32.w,
+                  height: 0.6.h,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(0.3.h),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -132,23 +148,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       children: [
         Expanded(
           child: Center(
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Background lines image
-                Image.asset(
-                  'assets/images/bg_lines.png',
-                  fit: BoxFit.cover,
-                  width: double.infinity,
-                  height: double.infinity,
-                ),
-                // Main onboarding image
-                // Image.asset(
-                //   page.imagePath,
-                //   fit: BoxFit.contain,
-                //   width: 80.w,
-                // ),
-              ],
+            child: Image.asset(
+              page.imagePath,
+              fit: BoxFit.contain,
+              width: 80.w,
             ),
           ),
         ),
@@ -209,7 +212,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         SizedBox(height: 16),
         // Description
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 14),
+          padding: EdgeInsets.symmetric(horizontal: 45),
           child: Text(
             page.description,
             style: TextStyle(

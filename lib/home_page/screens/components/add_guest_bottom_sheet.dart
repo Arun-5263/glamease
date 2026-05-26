@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glamease/constants/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -72,24 +73,20 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
             child: Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: AppColors.backgroundWhite,
                 borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: AppColors.grey300,
+                  width: 1,
+                ),
               ),
               child: Row(
                 children: [
                   // Person icon
-                  Container(
-                    width: 50,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      color: Colors.grey[300],
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Icon(
-                      Icons.person,
-                      color: Colors.grey[700],
-                      size: 28,
-                    ),
+                  SvgPicture.asset(
+                    'assets/icons/user.svg',
+                    width: 28,
+                    height: 28,
                   ),
                   
                   SizedBox(width: 16),

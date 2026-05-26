@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:glamease/constants/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
@@ -61,14 +62,14 @@ class _ChooseAppointmentTypeBottomSheetState
               child: Column(
                 children: [
                   _buildOptionCard(
-                    icon: Icons.person,
+                    iconAssetPath: 'assets/icons/user.svg',
                     title: 'Book an appointment',
                     subtitle: 'Book an appointment only for yourself',
                     value: 'single',
                   ),
                   SizedBox(height: 16),
                   _buildOptionCard(
-                    icon: Icons.people,
+                    iconAssetPath: 'assets/icons/group.svg',
                     title: 'Group appointment',
                     subtitle: 'Book for 2 or more people',
                     value: 'group',
@@ -118,7 +119,7 @@ class _ChooseAppointmentTypeBottomSheetState
   }
 
   Widget _buildOptionCard({
-    required IconData icon,
+    required String iconAssetPath,
     required String title,
     required String subtitle,
     required String value,
@@ -146,18 +147,10 @@ class _ChooseAppointmentTypeBottomSheetState
         child: Row(
           children: [
             // Icon
-            Container(
-              width: 50,
-              height: 50,
-              decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Icon(
-                icon,
-                color: Colors.grey[700],
-                size: 28,
-              ),
+            SvgPicture.asset(
+              iconAssetPath,
+              width: 28,
+              height: 28,
             ),
 
             SizedBox(width: 16),

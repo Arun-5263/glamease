@@ -26,7 +26,7 @@ class OptionSelectionSection extends StatelessWidget {
             style: TextStyle(
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
-              color:AppColors.textBlack,
+              color: AppColors.textBlack,
             ),
           ),
           SizedBox(height: 16),
@@ -41,9 +41,10 @@ class OptionSelectionSection extends StatelessWidget {
                 final index = entry.key;
                 final option = entry.value;
                 final isSelected = index == selectedOptionIndex;
-                
+
                 return Padding(
-                  padding: EdgeInsets.only(bottom: index < options.length - 1 ? 16 : 0),
+                  padding: EdgeInsets.only(
+                      bottom: index < options.length - 1 ? 16 : 0),
                   child: GestureDetector(
                     onTap: () => onOptionSelected(index),
                     child: Container(
@@ -93,7 +94,9 @@ class OptionSelectionSection extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   border: Border.all(
-                                    color: isSelected ? Colors.blue : AppColors.backgroundGrey,
+                                    color: isSelected
+                                        ? Colors.blue
+                                        : AppColors.backgroundGrey,
                                     width: 2,
                                   ),
                                 ),
@@ -118,9 +121,12 @@ class OptionSelectionSection extends StatelessWidget {
                             left: 0,
                             // right: 0,
                             child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
                               decoration: BoxDecoration(
-                                color: option['hasOffer'] ? Colors.green : AppColors.grey400,
+                                color: option['hasOffer']
+                                    ? Colors.green
+                                    : AppColors.grey400,
                                 borderRadius: BorderRadius.circular(18),
                               ),
                               child: Row(

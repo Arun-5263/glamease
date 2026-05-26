@@ -52,7 +52,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   void _maskPhoneNumber() {
     if (widget.phoneNumber.length >= 4) {
       String firstTwo = widget.phoneNumber.substring(0, 2);
-      String lastTwo = widget.phoneNumber.substring(widget.phoneNumber.length - 2);
+      String lastTwo =
+          widget.phoneNumber.substring(widget.phoneNumber.length - 2);
       _maskedPhoneNumber = '$firstTwo******$lastTwo';
     } else {
       _maskedPhoneNumber = widget.phoneNumber;
@@ -95,7 +96,8 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
 
   void _onKeypadTap(String value) {
     if (value == 'backspace') {
-      if (_currentIndex >= 0 && _otpControllers[_currentIndex].text.isNotEmpty) {
+      if (_currentIndex >= 0 &&
+          _otpControllers[_currentIndex].text.isNotEmpty) {
         _otpControllers[_currentIndex].text = '';
         if (_currentIndex > 0) {
           _focusNodes[_currentIndex - 1].requestFocus();
@@ -106,7 +108,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
         _currentIndex--;
         _otpControllers[_currentIndex].text = '';
       }
-    } else if (value == '+*#') {
+    } else if (value == '+*#' || value == '+ * #') {
       // Handle special characters if needed
     } else {
       if (_currentIndex < 4) {
@@ -154,6 +156,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     return Scaffold(
       backgroundColor: AppColors.backgroundWhite,
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             // Navigation bar
@@ -242,124 +245,147 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                 _currentIndex = index;
                                 setState(() {});
                               },
-                              enabled: false, // Disable keyboard, use keypad instead
+                              enabled:
+                                  false, // Disable keyboard, use keypad instead
                             ),
                           );
                         }),
                       ),
-                      SizedBox(height: 24),
-                      // Resend OTP
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Didn\'t recieve OTP? ',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.textGrey,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: _resendTimer == 0 ? _onResendOTP : null,
-                            child: Text(
-                              'Resend (${_formatTimer(_resendTimer)})',
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w600,
-                                color: _resendTimer == 0
-                                    ? AppColors.primaryOrange
-                                    : AppColors.textBlack,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 32),
-                      // Verify OTP button
-                      Container(
-                        width: double.infinity,
-                        height: 50,
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryOrange,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: ElevatedButton(
-                          onPressed: () {
-                            String otp = _otpControllers.map((c) => c.text).join();
-                            if (otp.length == 4) {
-                              _onVerifyOTP();
-                            }
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primaryOrange,
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Text(
-                            'Verify OTP',
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.w600,
-                              color: AppColors.textWhite,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 40),
                     ],
                   ),
                 ),
               ),
             ),
+            // Resend OTP and Verify OTP button, positioned statically above the keypad
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 2.h),
+              child: Column(
+                children: [
+                  // Resend OTP
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Didn\'t recieve OTP? ',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.textGrey,
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: _resendTimer == 0 ? _onResendOTP : null,
+                        child: Text(
+                          'Resend (${_formatTimer(_resendTimer)})',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w600,
+                            color: _resendTimer == 0
+                                ? AppColors.primaryOrange
+                                : AppColors.textBlack,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 3.h),
+                  // Verify OTP button
+                  Container(
+                    width: double.infinity,
+                    height: 6.h,
+                    decoration: BoxDecoration(
+                      color: AppColors.primaryOrange,
+                      borderRadius: BorderRadius.circular(1.5.h),
+                    ),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        String otp = _otpControllers.map((c) => c.text).join();
+                        if (otp.length == 4) {
+                          _onVerifyOTP();
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primaryOrange,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(1.5.h),
+                        ),
+                      ),
+                      child: Text(
+                        'Verify OTP',
+                        style: TextStyle(
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.textWhite,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
             // Numeric Keypad
             Container(
-              color: Color(0xFFF5F5F5),
-              padding: EdgeInsets.all(16),
+              color: Color(0xFFCFD3D9),
+              padding: EdgeInsets.only(left: 1.5.w, right: 1.5.w, top: 1.h, bottom: 1.h),
               child: Column(
                 children: [
                   // Row 1: 1, 2, 3
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildKeypadButton('1', ''),
                       _buildKeypadButton('2', 'ABC'),
                       _buildKeypadButton('3', 'DEF'),
                     ],
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: 0.8.h),
                   // Row 2: 4, 5, 6
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildKeypadButton('4', 'GHI'),
                       _buildKeypadButton('5', 'JKL'),
                       _buildKeypadButton('6', 'MNO'),
                     ],
                   ),
-                  SizedBox(height: 12),
+                  SizedBox(height: 0.8.h),
                   // Row 3: 7, 8, 9
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       _buildKeypadButton('7', 'PQRS'),
                       _buildKeypadButton('8', 'TUV'),
                       _buildKeypadButton('9', 'WXYZ'),
                     ],
                   ),
-                  SizedBox(height: 12),
-                  // Row 4: +*#, 0, backspace
+                  SizedBox(height: 0.8.h),
+                  // Row 4: + * #, 0, backspace
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      _buildKeypadButton('+*#', ''),
+                      _buildKeypadButton('+ * #', '', isSpecial: true),
                       _buildKeypadButton('0', ''),
                       _buildKeypadButton('backspace', '', isBackspace: true),
                     ],
                   ),
                 ],
+              ),
+            ),
+            // Bottom decorative bar inside the keyboard area to match background color
+            Container(
+              color: Color(0xFFCFD3D9),
+              padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).padding.bottom > 0
+                    ? MediaQuery.of(context).padding.bottom
+                    : 1.5.h,
+                top: 6.h,
+              ),
+              child: Center(
+                child: Container(
+                  width: 32.w,
+                  height: 0.6.h,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(0.3.h),
+                  ),
+                ),
               ),
             ),
           ],
@@ -368,43 +394,101 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
     );
   }
 
-  Widget _buildKeypadButton(String value, String letters, {bool isBackspace = false}) {
-    return GestureDetector(
-      onTap: () => _onKeypadTap(value),
-      child: Container(
-        width: 100,
-        height: 60,
-        decoration: BoxDecoration(
-          color: AppColors.backgroundWhite,
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: AppColors.borderGrey),
-        ),
-        child: isBackspace
-            ? Icon(Icons.backspace_outlined, color: AppColors.textBlack, size: 24)
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    value,
-                    style: TextStyle(
-                      fontSize: 24.sp,
-                      fontWeight: FontWeight.w500,
-                      color: AppColors.textBlack,
+  Widget _buildKeypadButton(String value, String letters,
+      {bool isBackspace = false, bool isSpecial = false}) {
+    final bool isTransparent = isBackspace || isSpecial;
+    return Expanded(
+      child: GestureDetector(
+        onTap: () => _onKeypadTap(value),
+        child: Container(
+          height: 5.8.h,
+          margin: EdgeInsets.symmetric(horizontal: 0.8.w),
+          decoration: isTransparent
+              ? null
+              : BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(0.6.h),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color(0x3F000000),
+                      offset: Offset(0, 0.1.h),
+                      blurRadius: 0.1.h,
                     ),
+                  ],
+                ),
+          child: isBackspace
+              ? Center(
+                  child: Icon(
+                    Icons.backspace_outlined,
+                    color: AppColors.textBlack,
+                    size: 22,
                   ),
-                  if (letters.isNotEmpty)
-                    Text(
-                      letters,
-                      style: TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                        color: AppColors.textGrey,
+                )
+              : isSpecial
+                  ? Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            '+',
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.textBlack,
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Transform.translate(
+                            offset: Offset(0, 3.5),
+                            child: Text(
+                              '*',
+                              style: TextStyle(
+                                fontSize: 20.sp,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.textBlack,
+                              ),
+                            ),
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            '#',
+                            style: TextStyle(
+                              fontSize: 18.sp,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.textBlack,
+                            ),
+                          ),
+                        ],
                       ),
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          value,
+                          style: TextStyle(
+                            fontSize: 20.sp,
+                            fontWeight: FontWeight.w400,
+                            color: AppColors.textBlack,
+                            height: 1.1,
+                          ),
+                        ),
+                        if (letters.isNotEmpty)
+                          Text(
+                            letters,
+                            style: TextStyle(
+                              fontSize: 8.sp,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.textBlack,
+                              letterSpacing: 2.0,
+                              height: 0.9,
+                            ),
+                          ),
+                      ],
                     ),
-                ],
-              ),
+        ),
       ),
     );
   }
 }
-
