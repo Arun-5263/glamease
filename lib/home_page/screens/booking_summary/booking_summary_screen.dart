@@ -17,9 +17,11 @@ class BookingSummaryScreen extends StatelessWidget {
   final String coverChargeText;
   final String coverChargeAmount;
   final String totalAmount;
+  final String? stylistName;
+  final String? customerName;
 
   const BookingSummaryScreen({
-    Key? key,
+    super.key,
     required this.venueName,
     required this.city,
     required this.dateTime,
@@ -28,7 +30,9 @@ class BookingSummaryScreen extends StatelessWidget {
     required this.coverChargeText,
     required this.coverChargeAmount,
     required this.totalAmount,
-  }) : super(key: key);
+    this.stylistName,
+    this.customerName,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -97,6 +101,8 @@ class BookingSummaryScreen extends StatelessWidget {
                     address: address,
                     discountText: discountText,
                     coverChargeText: coverChargeText,
+                    customerName: customerName,
+                    stylistName: stylistName,
                   ),
                   
                   // Redeemable Banner
@@ -159,6 +165,8 @@ class BookingSummaryScreen extends StatelessWidget {
                 address: address,
                 coverChargeAmount: coverChargeAmount,
                 upiTransactionNo: upiTransactionNo,
+                customerName: customerName,
+                stylistName: stylistName,
               ),
             ),
           );

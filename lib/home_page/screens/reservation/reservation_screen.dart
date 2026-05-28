@@ -11,12 +11,14 @@ import '../booking_summary/booking_summary_screen.dart';
 class ReservationScreen extends StatefulWidget {
   final String venueName;
   final String distance;
+  final String? stylistName;
 
   const ReservationScreen({
-    Key? key,
+    super.key,
     required this.venueName,
     required this.distance,
-  }) : super(key: key);
+    this.stylistName,
+  });
 
   @override
   _ReservationScreenState createState() => _ReservationScreenState();
@@ -189,7 +191,7 @@ class _ReservationScreenState extends State<ReservationScreen> {
                     bottom: MediaQuery.of(context).viewInsets.bottom,
                   ),
                   child: CustomerDetailsBottomSheet(
-                    onContinue: () {
+                    onContinue: (name, email) {
                       Navigator.pop(context); // Close bottom sheet
                       Navigator.push(
                         context,
@@ -205,6 +207,8 @@ class _ReservationScreenState extends State<ReservationScreen> {
                                 ['subtitle'],
                             coverChargeAmount: '₹50.00',
                             totalAmount: '₹50.00',
+                            stylistName: widget.stylistName,
+                            customerName: name,
                           ),
                         ),
                       );

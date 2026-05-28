@@ -11,6 +11,7 @@ import 'components/reviews_section.dart';
 import 'components/choose_appointment_type_bottom_sheet.dart';
 import 'components/add_guest_bottom_sheet.dart';
 import 'reservation/reservation_screen.dart';
+import 'reservation/select_stylist_screen.dart';
 import 'pay_bill/pay_bill_screen.dart';
 import 'all_reviews_screen.dart';
 import 'reservation/components/customer_details_bottom_sheet.dart';
@@ -241,11 +242,11 @@ class SpaDetailScreen extends StatelessWidget {
                             }
                           });
                         } else {
-                          // For single appointment, navigate directly
+                          // For single appointment, navigate to SelectStylistScreen
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => ReservationScreen(
+                              builder: (context) => SelectStylistScreen(
                                 venueName: title,
                                 distance: location,
                               ),
@@ -290,7 +291,7 @@ class SpaDetailScreen extends StatelessWidget {
                             title: 'Confirm your details',
                             subtitle: 'Add your details to proceed',
                             buttonText: 'Continue to booking',
-                            onContinue: () {
+                            onContinue: (name, email) {
                               Navigator.pop(context); // Close bottom sheet
                               Navigator.push(
                                 context,

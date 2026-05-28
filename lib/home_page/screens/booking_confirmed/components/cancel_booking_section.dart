@@ -10,6 +10,8 @@ class CancelBookingSection extends StatelessWidget {
   final String address;
   final String coverChargeAmount;
   final String upiTransactionNo;
+  final String? customerName;
+  final String? stylistName;
 
   const CancelBookingSection({
     Key? key,
@@ -19,6 +21,8 @@ class CancelBookingSection extends StatelessWidget {
     required this.address,
     required this.coverChargeAmount,
     required this.upiTransactionNo,
+    this.customerName,
+    this.stylistName,
   }) : super(key: key);
 
   @override
@@ -71,7 +75,7 @@ class CancelBookingSection extends StatelessWidget {
       backgroundColor: Colors.transparent,
       builder: (BuildContext bottomSheetContext) {
         final TextEditingController reasonController = TextEditingController();
-        
+
         return StatefulBuilder(
           builder: (context, setState) {
             return Container(
@@ -87,7 +91,7 @@ class CancelBookingSection extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   // Drag handle
-              
+
                   // Title
                   Text(
                     'Cancel Booking?',
@@ -185,12 +189,15 @@ class CancelBookingSection extends StatelessWidget {
                                   upiTransactionNo: upiTransactionNo,
                                   showHomeButton: true,
                                   isCancelled: true,
+                                  customerName: customerName,
+                                  stylistName: stylistName,
                                 ),
                               ),
                             );
                           },
                           style: OutlinedButton.styleFrom(
-                            side: BorderSide(color: AppColors.textRed, width: 1.5),
+                            side: BorderSide(
+                                color: AppColors.textRed, width: 1.5),
                             backgroundColor: AppColors.backgroundWhite,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
@@ -245,4 +252,3 @@ class CancelBookingSection extends StatelessWidget {
     );
   }
 }
-

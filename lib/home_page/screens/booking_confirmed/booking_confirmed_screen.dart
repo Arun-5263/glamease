@@ -18,6 +18,8 @@ class BookingConfirmedScreen extends StatelessWidget {
   final String upiTransactionNo;
   final bool showHomeButton;
   final bool isCancelled;
+  final String? customerName;
+  final String? stylistName;
 
   const BookingConfirmedScreen({
     Key? key,
@@ -29,6 +31,8 @@ class BookingConfirmedScreen extends StatelessWidget {
     required this.upiTransactionNo,
     this.showHomeButton = true,
     this.isCancelled = false,
+    this.customerName,
+    this.stylistName,
   }) : super(key: key);
 
   @override
@@ -71,6 +75,8 @@ class BookingConfirmedScreen extends StatelessWidget {
                     address: address,
                     city: city,
                     isCancelled: isCancelled,
+                    customerName: customerName,
+                    stylistName: stylistName,
                   ),
 
                   SizedBox(height: 24),
@@ -109,7 +115,7 @@ class BookingConfirmedScreen extends StatelessWidget {
                     BookingHistorySection(),
                   ] else ...[
                     // Offers For You
-                    OffersSection(),  
+                    OffersSection(),
 
                     SizedBox(height: 24),
 
@@ -156,6 +162,8 @@ class BookingConfirmedScreen extends StatelessWidget {
                       address: address,
                       coverChargeAmount: coverChargeAmount,
                       upiTransactionNo: upiTransactionNo,
+                      customerName: customerName,
+                      stylistName: stylistName,
                     ),
                     SizedBox(height: 24),
                   ],

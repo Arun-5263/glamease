@@ -30,7 +30,7 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.4,
+      height: MediaQuery.of(context).size.height * 0.3,
       decoration: BoxDecoration(
         color: AppColors.backgroundWhite,
         borderRadius: BorderRadius.only(
@@ -52,7 +52,7 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
               ),
             ),
           ),
-          
+
           // Title
           Center(
             child: Text(
@@ -64,9 +64,9 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
               ),
             ),
           ),
-          
+
           SizedBox(height: 24),
-          
+
           // Guest counter input
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -88,21 +88,21 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
                     width: 28,
                     height: 28,
                   ),
-                  
+
                   SizedBox(width: 16),
-                  
+
                   // Guests label
                   Expanded(
                     child: Text(
                       'Guests',
                       style: TextStyle(
-                        fontSize: 16.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textBlack,
                       ),
                     ),
                   ),
-                  
+
                   // Counter
                   Row(
                     children: [
@@ -123,9 +123,9 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
                           ),
                         ),
                       ),
-                      
+
                       SizedBox(width: 16),
-                      
+
                       // Number display
                       Container(
                         width: 50,
@@ -139,9 +139,9 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
                           ),
                         ),
                       ),
-                      
+
                       SizedBox(width: 16),
-                      
+
                       // Plus button
                       GestureDetector(
                         onTap: _incrementGuest,
@@ -165,9 +165,9 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
               ),
             ),
           ),
-          
+
           Spacer(),
-          
+
           // Proceed button
           Container(
             padding: EdgeInsets.all(16),
@@ -203,4 +203,3 @@ class _AddGuestBottomSheetState extends State<AddGuestBottomSheet> {
     );
   }
 }
-

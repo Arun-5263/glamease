@@ -10,6 +10,7 @@ import 'package:glamease/home_page/screens/profile/paw_coins_screen.dart';
 import 'package:glamease/home_page/screens/profile/favourites_screen.dart';
 import 'package:glamease/home_page/screens/profile/legal_info_screen.dart';
 import 'package:glamease/home_page/screens/profile/support_screen.dart';
+import 'package:glamease/home_page/screens/profile/student_employee_verification_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 
@@ -196,8 +197,8 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                     // Golden coin icon
                                     Center(
-                                      child: Image.asset(
-                                        'assets/icons/paw_icon.png',
+                                      child: SvgPicture.asset(
+                                        'assets/icons/glam_coin.svg',
                                         width: 45,
                                         height: 45,
                                         fit: BoxFit.contain,
@@ -276,6 +277,19 @@ class ProfileScreen extends StatelessWidget {
               _buildMenuSection(
                 context,
                 [
+                  _MenuItem(
+                    iconPath: 'assets/icons/student-card.svg',
+                    title: 'Student/Employee',
+                    subtitle: 'Verify your student/employee status',
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const StudentEmployeeVerificationScreen(),
+                        ),
+                      );
+                    },
+                  ),
                   _MenuItem(
                     iconPath: 'assets/icons/my_profile_icon.png',
                     title: AppStrings.referAndEarn,

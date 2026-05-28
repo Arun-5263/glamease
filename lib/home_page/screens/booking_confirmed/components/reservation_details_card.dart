@@ -9,50 +9,131 @@ class ReservationDetailsCard extends StatelessWidget {
   final String address;
   final String city;
   final bool isCancelled;
+  final String? customerName;
+  final String? stylistName;
 
   const ReservationDetailsCard({
-    Key? key,
+    super.key,
     required this.dateTime,
     required this.venueName,
     required this.address,
     required this.city,
     this.isCancelled = false,
-  }) : super(key: key);
+    this.customerName,
+    this.stylistName,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Container(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColors.backgroundWhite,
           borderRadius: BorderRadius.circular(12),
-       
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Pet Information
+            if (customerName != null && customerName!.trim().isNotEmpty) ...[
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/user.svg',
+                    width: 20,
+                    height: 20,
+                    colorFilter: const ColorFilter.mode(
+                        AppColors.textGrey, BlendMode.srcIn),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    customerName!.trim(),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.textBlack,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+            ],
+
+            if (stylistName != null && stylistName!.trim().isNotEmpty) ...[
+              Row(
+                children: [
+                  SvgPicture.asset(
+                    'assets/icons/scissor.svg',
+                    width: 20,
+                    height: 20,
+                    colorFilter: const ColorFilter.mode(
+                        AppColors.textGrey, BlendMode.srcIn),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(
+                    stylistName!.trim(),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.textBlack,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+            ],
+
+            // Date and Time
             Row(
               children: [
-                Icon(Icons.pets, color: AppColors.textGrey, size: 20),
-                SizedBox(width: 12),
+                SvgPicture.asset(
+                  'assets/icons/calender.svg',
+                  width: 20,
+                  height: 20,
+                  colorFilter: const ColorFilter.mode(
+                      AppColors.textGrey, BlendMode.srcIn),
+                ),
+                const SizedBox(width: 12),
+                Text(
+                  dateTime,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    fontWeight: FontWeight.w400,
+                    color: AppColors.textBlack,
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 16),
+
+            // Venue and Address
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.asset(
+                  'assets/icons/location.png',
+                  width: 20,
+                  height: 20,
+                  color: AppColors.textGrey,
+                ),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Max, 5 years',
+                        '$venueName, $city',
                         style: TextStyle(
                           fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w400,
                           color: AppColors.textBlack,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
-                        'Golden Retriever',
+                        address,
                         style: TextStyle(
                           fontSize: 12.sp,
                           fontWeight: FontWeight.w400,
@@ -64,69 +145,16 @@ class ReservationDetailsCard extends StatelessWidget {
                 ),
               ],
             ),
-            
-            SizedBox(height: 16),
-            
-            // Date and Time
-            Row(
-              children: [
-                Icon(Icons.calendar_today, color: AppColors.textGrey, size: 20),
-                SizedBox(width: 12),
-                Text(
-                  dateTime,
-                  style: TextStyle(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.textBlack,
-                  ),
-                ),
-              ],
-            ),
-            
-            SizedBox(height: 16),
-            
-            // Venue and Address
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(Icons.location_on, color: AppColors.textGrey, size: 20),
-                SizedBox(width: 12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '$venueName, $city',
-                        style: TextStyle(
-                           fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.textBlack,
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        address,
-                        style: TextStyle(
-                                fontSize: 12.sp,
-                    fontWeight: FontWeight.w400,
-                          color: AppColors.textGrey,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            
+
             // Divider and Action buttons (not shown for cancelled)
             if (!isCancelled) ...[
               SizedBox(height: 16),
-              
+
               // Divider
               Divider(color: AppColors.borderGrey, height: 1),
-              
+
               SizedBox(height: 16),
-              
+
               // Action buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -144,7 +172,7 @@ class ReservationDetailsCard extends StatelessWidget {
                             width: 25,
                             height: 25,
                             fit: BoxFit.contain,
-                         
+                            color: AppColors.primaryOrange,
                             semanticsLabel: 'Get Directions',
                           ),
                         ),
@@ -160,7 +188,7 @@ class ReservationDetailsCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  
+
                   // Share button
                   GestureDetector(
                     onTap: () {
@@ -173,14 +201,14 @@ class ReservationDetailsCard extends StatelessWidget {
                           width: 25,
                           height: 25,
                           fit: BoxFit.contain,
-                        
+                          color: AppColors.primaryOrange,
                           semanticsLabel: 'Share',
                         ),
                         SizedBox(width: 8),
                         Text(
                           'Share',
                           style: TextStyle(
-                          fontSize: 12.sp,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w500,
                             color: AppColors.primaryOrange,
                           ),
@@ -197,4 +225,3 @@ class ReservationDetailsCard extends StatelessWidget {
     );
   }
 }
-

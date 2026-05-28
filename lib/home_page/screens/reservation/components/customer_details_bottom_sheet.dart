@@ -3,18 +3,18 @@ import 'package:glamease/constants/app_colors.dart';
 import 'package:sizer/sizer.dart';
 
 class CustomerDetailsBottomSheet extends StatefulWidget {
-  final VoidCallback onContinue;
+  final Function(String name, String email) onContinue;
   final String? title;
   final String? subtitle;
   final String? buttonText;
 
   const CustomerDetailsBottomSheet({
-    Key? key,
+    super.key,
     required this.onContinue,
     this.title,
     this.subtitle,
     this.buttonText,
-  }) : super(key: key);
+  });
 
   @override
   State<CustomerDetailsBottomSheet> createState() =>
@@ -160,7 +160,7 @@ class _CustomerDetailsBottomSheetState
             child: ElevatedButton(
               onPressed: () {
                 // Here we would typically validate inputs before proceeding
-                widget.onContinue();
+                widget.onContinue(_nameController.text, _emailController.text);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color(0xFF7A1FA2), // Purple color from image

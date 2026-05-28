@@ -18,8 +18,7 @@ class _ChooseAppointmentTypeBottomSheetState
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.5,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColors.backgroundWhite,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(20),
@@ -27,10 +26,11 @@ class _ChooseAppointmentTypeBottomSheetState
         ),
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           // Drag handle
           Padding(
-            padding: EdgeInsets.only(top: 8, bottom: 16),
+            padding: const EdgeInsets.only(top: 8, bottom: 16),
             child: Container(
               width: 80,
               height: 4,
@@ -53,35 +53,36 @@ class _ChooseAppointmentTypeBottomSheetState
             ),
           ),
 
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
 
           // Option cards
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Column(
-                children: [
-                  _buildOptionCard(
-                    iconAssetPath: 'assets/icons/user.svg',
-                    title: 'Book an appointment',
-                    subtitle: 'Book an appointment only for yourself',
-                    value: 'single',
-                  ),
-                  SizedBox(height: 16),
-                  _buildOptionCard(
-                    iconAssetPath: 'assets/icons/group.svg',
-                    title: 'Group appointment',
-                    subtitle: 'Book for 2 or more people',
-                    value: 'group',
-                  ),
-                ],
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _buildOptionCard(
+                  iconAssetPath: 'assets/icons/user.svg',
+                  title: 'Book an appointment',
+                  subtitle: 'Book an appointment only for yourself',
+                  value: 'single',
+                ),
+                const SizedBox(height: 16),
+                _buildOptionCard(
+                  iconAssetPath: 'assets/icons/group.svg',
+                  title: 'Group appointment',
+                  subtitle: 'Book for 2 or more people',
+                  value: 'group',
+                ),
+              ],
             ),
           ),
 
+          const SizedBox(height: 16),
+
           // Proceed button
           Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: SafeArea(
               child: SizedBox(
                 width: double.infinity,
@@ -94,7 +95,7 @@ class _ChooseAppointmentTypeBottomSheetState
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF6B46C1), // Purple color
+                    backgroundColor: const Color(0xFF6B46C1), // Purple color
                     disabledBackgroundColor: AppColors.grey300,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
@@ -163,7 +164,7 @@ class _ChooseAppointmentTypeBottomSheetState
                   Text(
                     title,
                     style: TextStyle(
-                      fontSize: 16.sp,
+                      fontSize: 14.sp,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textBlack,
                     ),

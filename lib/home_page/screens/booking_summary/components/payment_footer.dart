@@ -29,7 +29,7 @@ class _PaymentFooterState extends State<PaymentFooter> {
         currentMethod: selectedPaymentMethod,
       ),
     );
-    
+
     if (result != null) {
       setState(() {
         selectedPaymentMethod = result;
@@ -104,16 +104,16 @@ class _PaymentFooterState extends State<PaymentFooter> {
                         'Pay using',
                         style: TextStyle(
                           color: AppColors.textBlack,
-                  fontSize: 12.sp,
-                  fontWeight: FontWeight.w600,
+                          fontSize: 12.sp,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                       Text(
                         _paymentMethodName,
                         style: TextStyle(
-                           color: AppColors.textGrey,
-                  fontSize: 10.sp,
-                  fontWeight: FontWeight.w500,
+                          color: AppColors.textGrey,
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w500,
                         ),
                       ),
                     ],
@@ -124,7 +124,8 @@ class _PaymentFooterState extends State<PaymentFooter> {
                   child: Text(
                     'Change >',
                     style: TextStyle(
-                      fontSize: 14,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
                       color: Color(0xFF001EFF),
                     ),
                   ),
@@ -134,11 +135,11 @@ class _PaymentFooterState extends State<PaymentFooter> {
             SizedBox(height: 16),
             // Swipe to Pay Button
             SwipeButton(
+              height: 60.0,
               activeThumbColor: AppColors.primaryOrange,
               activeTrackColor: AppColors.primaryOrange,
               thumb: Container(
-             
-                padding: EdgeInsets.only(left: 8),
+                padding: const EdgeInsets.only(left: 8),
                 child: Image.asset(
                   'assets/icons/slide_icon.png',
                   width: 30,

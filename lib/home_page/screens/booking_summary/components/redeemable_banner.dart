@@ -22,10 +22,9 @@ class RedeemableBanner extends StatelessWidget {
       child: Text(
         message,
         style: TextStyle(
-          fontSize: 12.sp,
-          color: AppColors.textBlack,
-          fontWeight: FontWeight.w400
-        ),
+            fontSize: 12.sp,
+            color: AppColors.textBlack,
+            fontWeight: FontWeight.w400),
         textAlign: TextAlign.center,
       ),
     );
