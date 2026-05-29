@@ -7,10 +7,10 @@ class OffersSection extends StatelessWidget {
   final String? selectedOffer;
 
   const OffersSection({
-    Key? key,
+    super.key,
     required this.onOfferSelected,
     this.selectedOffer,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -26,13 +26,14 @@ class OffersSection extends StatelessWidget {
               fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.textBlack,
+              fontFamily: 'Manrope',
             ),
           ),
         ),
         SizedBox(height: 16),
         
         // Offers carousel
-        Container(
+        SizedBox(
           height: 70,
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -123,6 +124,7 @@ class OffersSection extends StatelessWidget {
                       fontSize: 10.sp,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textBlack,
+                      fontFamily: 'Manrope',
                     ),
                   ),
                   SizedBox(height: 2),
@@ -132,6 +134,7 @@ class OffersSection extends StatelessWidget {
                       fontSize: 8.sp,
                       fontWeight: FontWeight.w500,
                       color: AppColors.textGrey,
+                      fontFamily: 'Manrope',
                     ),
                   ),
                 ],

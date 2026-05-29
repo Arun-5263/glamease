@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:glamease/constants/app_colors.dart';
 import 'package:glamease/constants/app_strings.dart';
 import 'package:glamease/home_page/screens/profile/my_profile_screen.dart';
-import 'package:glamease/home_page/screens/profile/my_pet_screen.dart';
 import 'package:glamease/home_page/screens/profile/my_bookings_screen.dart';
 import 'package:glamease/home_page/screens/profile/refer_earn_screen.dart';
 import 'package:glamease/home_page/screens/profile/paw_coins_screen.dart';
@@ -42,7 +41,11 @@ class ProfileScreen extends StatelessWidget {
                   clipBehavior: Clip.none,
                   children: [
                     // Background that extends to status bar
-                    Positioned.fill(
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 40,
                       child: Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -152,7 +155,7 @@ class ProfileScreen extends StatelessWidget {
                           Positioned(
                             left: 16,
                             right: 20,
-                            bottom: -40, // Half outside the header
+                            bottom: 0, // Fully inside the header bounds
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -216,7 +219,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 7.h), // Space to account for overlapping card
+              SizedBox(height: 16), // Space to account for overlapping card
 
               // Menu Items
               _buildMenuSection(

@@ -137,7 +137,6 @@ class LegalInfoScreen extends StatelessWidget {
                 ),
               ),
             ),
-           
           ],
         ),
       ),
@@ -224,10 +223,10 @@ class LegalInfoScreen extends StatelessWidget {
                       child: Text(
                         'Delete Account',
                         style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textRed,
-                        ),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textRed,
+                            fontFamily: 'Inter'),
                       ),
                     ),
                   ),
@@ -248,10 +247,10 @@ class LegalInfoScreen extends StatelessWidget {
                       child: Text(
                         'Keep My Account',
                         style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.textBlack,
-                        ),
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.textBlack,
+                            fontFamily: 'Inter'),
                       ),
                     ),
                   ),
@@ -265,4 +264,3 @@ class LegalInfoScreen extends StatelessWidget {
     );
   }
 }
-

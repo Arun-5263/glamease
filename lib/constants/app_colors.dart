@@ -30,7 +30,7 @@ class AppColors {
   static const Color textGrey = Color(0xFF808080);
   static const Color textLightGrey = Color(0xFF999999);
   static const Color textSecondaryGrey = Color(0xFFA4ACB9);
-  static const Color textGreen = Colors.green;
+  static const Color textGreen = Color(0xFF28A745);
   static const Color textBlue = Colors.blue;
   static const Color textRed = Color(0xFFEB001B);
 
@@ -41,7 +41,7 @@ class AppColors {
   static Color shadowVeryLight = Colors.black.withValues(alpha: 0.06);
 
   // Status Colors
-  static const Color successGreen = Colors.green;
+  static const Color successGreen = Color(0xFF28A745);
   static const Color errorRed = Colors.red;
   static const Color warningOrange = Colors.orange;
   static const Color infoBlue = Colors.blue;
