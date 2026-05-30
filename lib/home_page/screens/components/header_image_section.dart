@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 class HeaderImageSection extends StatelessWidget {
   final VoidCallback onBackPressed;
   final VoidCallback onFavoritePressed;
+  final VoidCallback onSharePressed;
 
   const HeaderImageSection({
     Key? key,
     required this.onBackPressed,
     required this.onFavoritePressed,
+    required this.onSharePressed,
   }) : super(key: key);
 
   @override
@@ -58,13 +60,26 @@ class HeaderImageSection extends StatelessWidget {
                       height: 35,
                     ),
                   ),
-                  GestureDetector(
-                    onTap: onFavoritePressed,
-                    child: Image.asset(
-                      'assets/icons/fav.png',
-                      width: 35,
-                      height: 35,
-                    ),
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: onFavoritePressed,
+                        child: Image.asset(
+                          'assets/icons/fav.png',
+                          width: 35,
+                          height: 35,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      GestureDetector(
+                        onTap: onSharePressed,
+                        child: Image.asset(
+                          'assets/icons/share_icon.png',
+                          width: 35,
+                          height: 35,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

@@ -50,6 +50,12 @@ class SpaDetailScreen extends StatelessWidget {
                   SnackBar(content: Text('Added to favorites!')),
                 );
               },
+              onSharePressed: () {
+                // Handle share action
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Link shared!')),
+                );
+              },
             ),
             // Main content
             _buildMainContent(),

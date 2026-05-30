@@ -154,8 +154,8 @@ class ProfileScreen extends StatelessWidget {
                           // Paw Coins Section - overlapping the header
                           Positioned(
                             left: 16,
-                            right: 20,
-                            bottom: 0, // Fully inside the header bounds
+                            right: 16,
+                            bottom: -30, // Shifted down for overlap
                             child: GestureDetector(
                               onTap: () {
                                 Navigator.push(
@@ -219,7 +219,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
 
-              SizedBox(height: 16), // Space to account for overlapping card
+              SizedBox(height: 36), // Space to account for overlapping card
 
               // Menu Items
               _buildMenuSection(
@@ -288,7 +288,8 @@ class ProfileScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const StudentEmployeeVerificationScreen(),
+                          builder: (context) =>
+                              const StudentEmployeeVerificationScreen(),
                         ),
                       );
                     },

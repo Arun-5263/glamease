@@ -40,7 +40,7 @@ class SpaInfoSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final distanceText = _extractDistance(distance);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -57,6 +57,7 @@ class SpaInfoSection extends StatelessWidget {
           children: [
             Flexible(
               child: Row(
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   Flexible(
                     child: Text(
@@ -150,7 +151,6 @@ class SpaInfoSection extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: AppColors.backgroundWhite,
                     borderRadius: BorderRadius.circular(36),
-             
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -191,7 +191,7 @@ class SpaInfoSection extends StatelessWidget {
               child: Center(
                 child: SvgPicture.asset(
                   'assets/icons/call.svg',
-                 width: 35,
+                  width: 35,
                   height: 35,
                 ),
               ),
